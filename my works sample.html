@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Essa Jafari | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        /* NAVBAR */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: #1565c0;
+        }
+
+        .logo span {
+            color: #ff9800;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: #1565c0;
+        }
+
+        /* HERO */
+
+        .hero {
+
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+
+            padding-left: 30px;
+            padding-right: 30px;
+
+            min-height: 100vh;
+
+        }
+
+        .hero img {
+
+            width: 100%;
+            max-width: 420px;
+            display: block;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+
+        }
+
+        .hero h3 {
+
+            font-size: 28px;
+            color: #666;
+
+        }
+
+        .hero h1 {
+
+            font-size: 55px;
+            margin: 10px 0;
+
+        }
+
+        .hero span {
+
+            color: #1565c0;
+
+        }
+
+        .hero h2 {
+
+            color: #ff9800;
+            margin-bottom: 20px;
+
+        }
+
+        .hero p {
+
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+
+        }
+
+        .btn {
+
+            display: inline-block;
+            padding: 15px 35px;
+            background: #1565c0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: .3s;
+
+        }
+
+        .btn:hover {
+
+            background: #0d47a1;
+
+        }
+
+        /* ABOUT */
+
+        .about {
+
+            padding: 80px 30px;
+            background: white;
+
+        }
+
+        .container {
+
+            max-width: 1100px;
+            margin: auto;
+
+        }
+
+        .title {
+
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #1565c0;
+
+        }
+
+        .about p {
+
+            font-size: 18px;
+            line-height: 1.9;
+            text-align: justify;
+
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px) {
+
+            .hero {
+
+                grid-template-columns: 1fr;
+                text-align: center;
+
+            }
+
+            .hero h1 {
+
+                font-size: 40px;
+
+            }
+
+            nav {
+
+                flex-direction: column;
+
+            }
+
+            nav ul {
+
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                ME<span>J</span>
+
+            </div>
+
+            <ul>
+
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <section class="hero">
+
+        <div>
+
+            <h3>Hello, I'm</h3>
+
+            <h1>Mohammad <span>Essa</span> Jafari</h1>
+
+            <h2>Pharmacist • Voice-Over Artist • Translator • Web Developer</h2>
+
+            <p>
+
+                Welcome to my personal portfolio.
+
+                I am a Pharmacist with a passion for healthcare, continuous learning, and helping others.
+
+                Alongside my profession, I work as a Professional Dari (Farsi) Voice-Over Artist, Translator, and
+                Front-End Web Developer.
+
+                I enjoy creating modern responsive websites and delivering high-quality services to clients worldwide.
+
+            </p>
+
+            <a href="#about" class="btn">
+
+                Learn More
+
+            </a>
+
+        </div>
+
+        <div>
+
+            <img src="image/essa.jpg" alt="Mohammad Essa Jafari">
+
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+
+        <div class="container">
+
+            <h2 class="title">
+
+                About Me
+
+            </h2>
+
+            <p>
+
+                My name is <strong>Mohammad Essa Jafari</strong>. I am a Pharmacist, Professional Dari (Farsi)
+                Voice-Over Artist, Translator, and Front-End Web Developer.
+
+                I have a strong interest in healthcare, education, and technology. Since beginning my journey in web
+                development, I have enjoyed building responsive websites using HTML, CSS, and JavaScript.
+
+                In addition to my technical work, I provide professional voice-over services and translation between
+                English, Dari (Farsi), and Pashto.
+
+                I believe in professionalism, honesty, continuous learning, and delivering high-quality work in every
+                project I undertake.
+
+            </p>
+            <a href="Potfolio FILE.html" class="btn">← Back to Home</a>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

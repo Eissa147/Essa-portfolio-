@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.contianar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 2px;
+}
+
+.main {
+    width: 100%;
+    background: chocolate url(image/b.jg);
+    background-position: center;
+    background-size: cover;
+    height: 109vh;
+}
+
+.navbar {
+    width: 120px;
+    height: 75px;
+    margin: 1px;
+}
+
+.icon {
+    float: left;
+    width: 120px;
+    height: 75px;
+    padding: 11px;
+
+}
+
+.logo {
+    float: left;
+    border-radius: 5px;
+    padding: 1px 7px 3px 5px;
+    background-color: rgb(2, 66, 2);
+    color: orange;
+    font-size: 21px;
+    font-family: 'Courier New'
+
+
+}
+
+.menu {
+    font-family: 'Courier New';
+    font-weight: bold;
+    width: 300px;
+    height: 70px;
+
+}
+
+ul {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+ul li {
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 26px;
+    font-size: 14px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    transition: 0.8s ease-out;
+}
+
+ul li a:hover {
+    background-color: aqua;
+    color: rgb(8, 8, 7);
+    cursor: pointer;
+    scale: calc(0.8);
+
+}
+
+.search {
+position: relative;
+align-items: end;
+}
+
+.srch {
+    width: 200px;
+    height: 35px;
+    font-family: arial;
+    background: transparent;
+    border: solid rgb(128, 0, 111);
+    border-radius: 10px;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 17px;
+    background-color: rgb(255, 255, 255);
+}
+
+.btn {
+    border: none;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 11px;
+display:table-column;
+
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: rgb(145, 192, 192);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.srch:focus {
+    outline: none;
+}
+
+.content {
+    letter-spacing: 1px;
+    font-size: 19px;
+    font-family: 'Times New Roman';
+    position: relative;
+margin: auto;
+}
+
+.m {
+    color: orange;
+
+
+}
+
+.c {
+    color: aqua;
+}
+
+.h {
+    color: orange;
+}
+
+.e {
+    color: rgb(196, 165, 155);
+}
+
+.B {
+    color: green;
+}
+
+.ty {
+    color: yellowgreen;
+}
+
+.center {
+    color: brown;
+}
+h3{
+    color: whitesmoke;
+    padding: 5px;
+height: 5vh;
+}
+.para{
+   background-color: rgba(245, 108, 17, 0.705);
+
+   padding: 7px 8px 9px;
+   text-align: justify;
+  letter-spacing: normal;
+  border: none;
+   border-radius: 9px;
+
+}
+.video video{
+  width: 100%;
+height: 100px;
+max-width: 800px;
+border-radius: 11px;
+outline: none;
+animation-play-state: running;
+
+
+}

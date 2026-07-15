@@ -1,0 +1,140 @@
+/* ===========================
+   Global Styles
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#e9eed8;
+    color:#000000;
+    line-height:1.8;
+}
+
+/* ===========================
+   Container
+=========================== */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:60px auto;
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+/* ===========================
+   Heading
+=========================== */
+
+h1{
+    text-align:center;
+    font-size:42px;
+    color:#1b5e20;
+    margin-bottom:25px;
+}
+
+h2{
+    margin-top:35px;
+    margin-bottom:15px;
+    color:#ff6f00;
+    font-size:28px;
+}
+
+/* ===========================
+   Paragraph
+=========================== */
+
+p{
+    font-size:18px;
+    text-align:justify;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   Skills
+=========================== */
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.skills div{
+    background:#f1f5f9;
+    padding:15px;
+    border-left:5px solid #1b5e20;
+    border-radius:8px;
+    font-size:17px;
+    transition:.3s;
+}
+
+.skills div:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+/* ===========================
+   Mission
+=========================== */
+
+.mission{
+    margin-top:35px;
+    padding:25px;
+    background:#fff8e1;
+    border-left:6px solid #ff9800;
+    border-radius:10px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:768px){
+
+    .container{
+        width:95%;
+        padding:25px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    h2{
+        font-size:24px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media (max-width:480px){
+
+    h1{
+        font-size:28px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    p{
+        font-size:15px;
+    }
+
+}

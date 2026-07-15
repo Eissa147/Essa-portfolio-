@@ -1,0 +1,307 @@
+/* ===========================
+   Google Font
+=========================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===========================
+   Global
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fa;
+    color:#333;
+}
+
+/* ===========================
+   Main
+=========================== */
+
+.main{
+    width:100%;
+    min-height:100vh;
+    padding:20px 8%;
+}
+
+/* ===========================
+   Navbar
+=========================== */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+}
+
+.logo{
+    width:80px;
+    cursor:pointer;
+}
+
+.navbar ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.navbar ul li{
+    list-style:none;
+}
+
+.navbar ul li a{
+    text-decoration:none;
+    color:#222;
+    font-weight:600;
+    transition:.3s;
+}
+
+.navbar ul li a:hover{
+    color:#ff6600;
+}
+
+/* ===========================
+   Hero
+=========================== */
+
+.info{
+    max-width:650px;
+}
+
+.info h3{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.info h1{
+    font-size:55px;
+    margin:15px 0;
+}
+
+.info span{
+    color:#ff6600;
+}
+
+#e{
+    color:#00a8ff;
+}
+
+.info p{
+    margin-top:15px;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.info a{
+    display:inline-block;
+    margin-top:30px;
+    padding:14px 30px;
+    background:#ff6600;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.info a:hover{
+    background:#222;
+}
+
+/* ===========================
+   Image
+=========================== */
+
+.image{
+    margin-top:40px;
+    text-align:center;
+}
+
+.Me{
+    width:350px;
+    max-width:100%;
+    border-radius:50%;
+    border:6px solid white;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* ===========================
+   Social Icons
+=========================== */
+
+.icon{
+    margin-top:35px;
+    text-align:center;
+}
+
+.icon a{
+    text-decoration:none;
+    color:#333;
+    font-size:30px;
+    margin:0 12px;
+    transition:.3s;
+}
+
+.icon a:hover{
+    color:#ff6600;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+footer{
+    margin-top:60px;
+    background:#222;
+    color:white;
+    padding:30px 20px;
+}
+
+#social{
+    text-align:center;
+    font-size:24px;
+    margin-bottom:20px;
+    color:white;
+}
+
+table{
+    width:100%;
+}
+
+table td{
+    text-align:center;
+    padding:10px;
+}
+
+table a{
+    color:white;
+    text-decoration:none;
+}
+
+table a:hover{
+    color:#ff6600;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media(max-width:992px){
+
+.main{
+    padding:20px 5%;
+}
+
+.info h1{
+    font-size:42px;
+}
+
+.info h3{
+    font-size:24px;
+}
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+}
+
+.navbar ul{
+    flex-direction:column;
+    width:100%;
+    margin-top:20px;
+    text-align:center;
+}
+
+.navbar ul li{
+    padding:8px 0;
+}
+
+.info{
+    text-align:center;
+    max-width:100%;
+}
+
+.info h1{
+    font-size:34px;
+}
+
+.info h3{
+    font-size:22px;
+}
+
+.info p{
+    font-size:16px;
+}
+
+.Me{
+    width:250px;
+}
+
+table,
+tbody,
+tr,
+td{
+    display:block;
+    width:100%;
+}
+
+td{
+    padding:12px;
+}
+
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media(max-width:480px){
+
+.logo{
+    width:65px;
+}
+
+.info h1{
+    font-size:28px;
+}
+
+.info h3{
+    font-size:20px;
+}
+
+.info p{
+    font-size:15px;
+}
+
+.info a{
+    width:100%;
+    text-align:center;
+}
+
+.Me{
+    width:200px;
+}
+
+.icon a{
+    font-size:26px;
+}
+
+}
