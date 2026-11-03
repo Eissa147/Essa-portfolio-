@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Finder | Mohammad Essa Jafari</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #343b8f;
+            --primary-light: #4a51a3;
+            --bg: #eef1f8;
+            --text: #1f2333;
+            --muted: #8a8fa8;
+        }
+
+        body {
+            font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .app {
+            max-width: 720px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--bg);
+            position: relative;
+            padding-bottom: 130px;
+        }
+
+        /* Top area */
+        .top {
+            background: radial-gradient(circle at 85% 0%, #dfe2fb 0, #dfe2fb 35%, transparent 36%), #f7f8fd;
+            padding: 20px 16px 0;
+        }
+
+        .stories {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 18px;
+            scrollbar-width: none;
+        }
+
+        .stories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .story {
+            flex: 0 0 auto;
+            text-align: center;
+            width: 88px;
+            cursor: pointer;
+        }
+
+        .story-ring {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            padding: 3px;
+            background: conic-gradient(from 200deg, #f58529, #dd2a7b, #8134af, #f58529);
+            margin: 0 auto;
+        }
+
+        .story-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+        }
+
+        .story-inner svg {
+            width: 58%;
+            height: 58%;
+        }
+
+        .story span {
+            display: block;
+            font-size: 12px;
+            margin-top: 4px;
+            white-space: nowrap;
+        }
+
+        .welcome {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 14px;
+            padding: 22px 22px 24px;
+            box-shadow: 0 10px 25px rgba(52, 59, 143, .25);
+        }
+
+        .welcome-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .welcome h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .welcome p {
+            color: #b9bde6;
+            font-size: 16px;
+        }
+
+        .bell {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .bell .dot {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ff5c7a;
+            border: 2px solid var(--primary);
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1.5px solid rgba(255, 255, 255, .45);
+            background: var(--primary-light);
+            border-radius: 8px;
+            padding: 10px 16px;
+        }
+
+        .search input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 17px;
+            font-family: inherit;
+        }
+
+        .search input::placeholder {
+            color: #e3e5f7;
+        }
+
+        /* Tabs menu */
+        .tabs-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #f7f8fd;
+            padding: 30px 16px 8px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            background: #fff;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 6px 20px rgba(31, 35, 51, .08);
+        }
+
+        .tab {
+            flex: 1;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: 16px;
+            color: var(--text);
+            padding: 12px 6px;
+            border-radius: 30px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: .25s;
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Grid */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px 4px;
+        }
+
+        .section-title h2 {
+            font-size: 18px;
+        }
+
+        .section-title small {
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            padding: 14px 20px;
+        }
+
+        .item {
+            background: #fff;
+            border-radius: 10px;
+            padding: 16px 16px 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(31, 35, 51, .05);
+            transition: .25s;
+        }
+
+        .item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(31, 35, 51, .12);
+        }
+
+        .tile {
+            aspect-ratio: 1 / .95;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .tile svg {
+            width: 62%;
+            height: 62%;
+        }
+
+        .item h3 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .item p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 11px;
+            padding: 1px 10px;
+            border-radius: 20px;
+            background: #e5f6ee;
+            color: #1f8a5b;
+        }
+
+        .badge.closed {
+            background: #fde8ec;
+            color: #c43c57;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--muted);
+            padding: 40px 0;
+        }
+
+        /* Bottom nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 688px;
+            height: 84px;
+            background: var(--primary);
+            border-radius: 18px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .bottom-nav a {
+            color: #aeb2e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .bottom-nav a.active {
+            color: #fff;
+        }
+
+        .bottom-nav a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .bottom-nav .center {
+            width: 96px;
+            height: 96px;
+            margin-top: -50px;
+            border-radius: 50%;
+            background: #fff;
+            border: 8px solid var(--primary);
+            color: var(--primary);
+            justify-content: center;
+        }
+
+        @media(max-width:520px) {
+            .grid {
+                gap: 12px;
+                padding: 12px 14px;
+            }
+
+            .item {
+                padding: 10px 10px 14px;
+            }
+
+            .item h3 {
+                font-size: 14px;
+            }
+
+            .tab {
+                font-size: 13px;
+                padding: 10px 4px;
+            }
+
+            .story {
+                width: 74px;
+            }
+
+            .story-ring {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="top">
+
+            <div class="stories">
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#fde8ec" data-icon="heart" data-color="#c8475f"></div></div>
+                    <span>صحت قلب</span>
+                </div>
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#fff4e2" data-icon="vitamin" data-color="#d9753a"></div></div>
+                    <span>ویتامین ها</span>
+                </div>
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#e3f4f1" data-icon="capsule" data-color="#3aa396"></div></div>
+                    <span>دوای درست</span>
+                </div>
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#e6ebf7" data-icon="lungs" data-color="#2f6aa0"></div></div>
+                    <span>حساسیت فصلی</span>
+                </div>
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#f1e8f3" data-icon="baby" data-color="#9b5aa0"></div></div>
+                    <span>صحت طفل</span>
+                </div>
+                <div class="story">
+                    <div class="story-ring"><div class="story-inner" style="background:#eef6e4" data-icon="syringe" data-color="#5d9a35"></div></div>
+                    <span>فشار خون</span>
+                </div>
+            </div>
+
+            <div class="welcome">
+                <div class="welcome-head">
+                    <div>
+                        <h1>سلام، خوش آمدید!</h1>
+                        <p>امروز خود را چه قسم احساس میکنید؟</p>
+                    </div>
+                    <button class="bell" aria-label="اطلاعیه ها">
+                        <span class="dot"></span>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+                        </svg>
+                    </button>
+                </div>
+
+                <label class="search">
+                    <input id="search" type="text" placeholder="جستجو دواخانه">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"
+                        stroke-linecap="round">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                </label>
+            </div>
+
+        </div>
+
+        <div class="tabs-wrap">
+            <nav class="tabs">
+                <button class="tab active" data-tab="pharmacies">دواخانه ها</button>
+                <button class="tab" data-tab="hospitals">شفاخانه ها</button>
+                <button class="tab" data-tab="labs">لابراتوار ها</button>
+                <button class="tab" data-tab="categories">کتگوری دوا ها</button>
+            </nav>
+        </div>
+
+        <div class="section-title">
+            <h2 id="section-heading">دواخانه ها</h2>
+            <small id="section-count"></small>
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+        <nav class="bottom-nav">
+            <a href="pharmacy.html" aria-label="پروفایل">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="10" r="3" />
+                    <path d="M6.2 18.8a7 7 0 0 1 11.6 0" />
+                </svg>
+            </a>
+            <a href="mywork.html" aria-label="مقالات">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="14" height="16" rx="1" />
+                    <path d="M17 8h3v10a2 2 0 0 1-2 2M7 9h6M7 13h6M7 17h3" />
+                </svg>
+            </a>
+            <a href="#" class="center" aria-label="صحت">
+                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z" />
+                    <path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17" />
+                </svg>
+            </a>
+            <a href="contact.html" aria-label="پیام ها">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
+                    <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" />
+                </svg>
+            </a>
+            <a href="pharmacy-finder.html" class="active" aria-label="خانه">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" />
+                </svg>
+            </a>
+        </nav>
+
+    </div>
+
+    <script>
+        const icons = {
+            pharmacy: '<path d="M8 24 12 10h40l4 14"/><path d="M8 24c0 4 4 6 8 6s8-2 8-6c0 4 4 6 8 6s8-2 8-6c0 4 4 6 8 6s8-2 8-6"/><path d="M12 30v24h40V30M32 36v12M26 42h12"/>',
+            hospital: '<path d="M10 54V22l22-12 22 12v32"/><path d="M6 54h52M32 22v14M25 29h14"/><rect x="26" y="42" width="12" height="12"/>',
+            lab: '<path d="M24 8h16M27 8v18L12 50a4 4 0 0 0 3.4 6h33.2A4 4 0 0 0 52 50L37 26V8"/><path d="M18 40h28"/>',
+            capsule: '<rect x="8" y="22" width="48" height="20" rx="10" transform="rotate(-35 32 32)"/><path d="m26 23 12 18"/>',
+            pill: '<circle cx="32" cy="32" r="20"/><path d="m18 46 28-28"/>',
+            heart: '<path d="M54 22a12 12 0 0 0-22-6.6A12 12 0 0 0 10 22c0 16 22 28 22 28s22-12 22-28z"/><path d="M14 32h10l4-7 6 14 4-7h12"/>',
+            syrup: '<rect x="18" y="22" width="28" height="34" rx="4"/><path d="M24 22v-8h16v8M24 8h16M18 36h28"/>',
+            syringe: '<path d="m44 8 12 12M50 14 22 42l-8-8L42 6M18 46l-8 8M30 26l4 4M24 32l4 4"/>',
+            vitamin: '<circle cx="32" cy="34" r="18"/><path d="M32 16c0-6 4-9 9-9M26 30l6 10 6-10"/>',
+            drop: '<path d="M32 8s16 18 16 30a16 16 0 0 1-32 0c0-12 16-30 16-30z"/><path d="M24 40a8 8 0 0 0 8 8"/>',
+            eye: '<path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32z"/><circle cx="32" cy="32" r="8"/>',
+            lungs: '<path d="M32 8v20M32 28c-4 0-8-6-12-6-6 0-10 12-10 22 0 6 2 10 8 10s10-4 10-10V30M32 28c4 0 8-6 12-6 6 0 10 12 10 22 0 6-2 10-8 10s-10-4-10-10V30"/>',
+            baby: '<circle cx="32" cy="26" r="14"/><path d="M27 24h.01M37 24h.01M28 31a6 6 0 0 0 8 0M18 54a14 14 0 0 1 28 0"/>',
+            skin: '<path d="M12 44c8-4 12-14 20-14s12 10 20 14"/><circle cx="22" cy="20" r="3"/><circle cx="40" cy="16" r="3"/><circle cx="32" cy="24" r="2"/><path d="M8 54h48"/>'
+        };
+
+        const palette = [
+            ['#fde8ec', '#c8475f'], ['#e3f4f1', '#3aa396'], ['#f1e8f3', '#9b5aa0'],
+            ['#e6ebf7', '#2f6aa0'], ['#fdf0e6', '#d9753a'], ['#eef6e4', '#5d9a35']
+        ];
+
+        const data = {
+            pharmacies: {
+                title: 'دواخانه ها', placeholder: 'جستجو دواخانه', icon: 'pharmacy',
+                items: [
+                    { name: 'دواخانه شفا', sub: 'مزارشریف، چوک روضه', open: true },
+                    { name: 'دواخانه ابن سینا', sub: 'سرک بلخ', open: true },
+                    { name: 'دواخانه صحت', sub: 'ناحیه سوم', open: false },
+                    { name: 'دواخانه امید', sub: 'کارته آریانا', open: true },
+                    { name: 'دواخانه رازی', sub: 'سرک شفاخانه', open: true },
+                    { name: 'دواخانه نور', sub: 'دهدادی', open: false },
+                    { name: 'دواخانه بلخ', sub: 'بازار مندوی', open: true },
+                    { name: 'دواخانه زندگی', sub: 'شهرک اتفاق', open: true },
+                    { name: 'دواخانه حکیم', sub: 'سرک پوهنتون', open: false }
+                ]
+            },
+            hospitals: {
+                title: 'شفاخانه ها', placeholder: 'جستجو شفاخانه', icon: 'hospital',
+                items: [
+                    { name: 'شفاخانه حوزوی بلخ', sub: 'دولتی' },
+                    { name: 'شفاخانه علی سینا', sub: 'خصوصی' },
+                    { name: 'شفاخانه نسایی ولادی', sub: 'دولتی' },
+                    { name: 'شفاخانه اطفال', sub: 'دولتی' },
+                    { name: 'شفاخانه چشم', sub: 'خصوصی' },
+                    { name: 'شفاخانه قلب', sub: 'خصوصی' }
+                ]
+            },
+            labs: {
+                title: 'لابراتوار ها', placeholder: 'جستجو لابراتوار', icon: 'lab',
+                items: [
+                    { name: 'لابراتوار پاستور', sub: 'معاینات خون' },
+                    { name: 'لابراتوار دقیق', sub: 'هورمون و ویتامین' },
+                    { name: 'لابراتوار نوین', sub: 'معاینات عمومی' },
+                    { name: 'لابراتوار سلامت', sub: 'میکروبیولوژی' },
+                    { name: 'لابراتوار آریا', sub: 'پتالوژی' },
+                    { name: 'لابراتوار مرکزی', sub: 'معاینات کامل' }
+                ]
+            },
+            categories: {
+                title: 'کتگوری دوا ها', placeholder: 'جستجو کتگوری دوا',
+                items: [
+                    { name: 'انتی بیوتیک', icon: 'capsule' },
+                    { name: 'مسکن ها', icon: 'pill' },
+                    { name: 'قلبی و فشار', icon: 'heart' },
+                    { name: 'شربت ها', icon: 'syrup' },
+                    { name: 'پیچکاری ها', icon: 'syringe' },
+                    { name: 'ویتامین ها', icon: 'vitamin' },
+                    { name: 'شکر (دیابت)', icon: 'drop' },
+                    { name: 'قطره چشم', icon: 'eye' },
+                    { name: 'تنفسی', icon: 'lungs' },
+                    { name: 'اطفال', icon: 'baby' },
+                    { name: 'جلدی', icon: 'skin' }
+                ]
+            }
+        };
+
+        const grid = document.getElementById('grid');
+        const search = document.getElementById('search');
+        const heading = document.getElementById('section-heading');
+        const count = document.getElementById('section-count');
+        let current = 'pharmacies';
+
+        function svg(name, color) {
+            return `<svg viewBox="0 0 64 64" fill="none" stroke="${color}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${icons[name]}</svg>`;
+        }
+
+        function render() {
+            const section = data[current];
+            const q = search.value.trim();
+            const items = section.items.filter(i => !q || i.name.includes(q) || (i.sub || '').includes(q));
+
+            heading.textContent = section.title;
+            count.textContent = `${items.length} مورد`;
+
+            grid.innerHTML = items.length ? items.map((item, i) => {
+                const [bg, fg] = palette[i % palette.length];
+                const badge = item.open === undefined ? '' :
+                    `<span class="badge ${item.open ? '' : 'closed'}">${item.open ? 'باز است' : 'بسته است'}</span>`;
+                return `<div class="item">
+                    <div class="tile" style="background:${bg}">${svg(item.icon || section.icon, fg)}</div>
+                    <h3>${item.name}</h3>
+                    ${item.sub ? `<p>${item.sub}</p>` : ''}
+                    ${badge}
+                </div>`;
+            }).join('') : '<div class="empty">موردی پیدا نشد</div>';
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelector('.tab.active').classList.remove('active');
+                tab.classList.add('active');
+                current = tab.dataset.tab;
+                search.value = '';
+                search.placeholder = data[current].placeholder;
+                render();
+            });
+        });
+
+        document.querySelectorAll('.story-inner').forEach(el => {
+            el.innerHTML = svg(el.dataset.icon, el.dataset.color);
+        });
+
+        search.addEventListener('input', render);
+
+        render();
+    </script>
+
+</body>
+
+</html>
